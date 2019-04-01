@@ -1,0 +1,16 @@
+/*
+ * Distribution Profiles
+ *
+ * Please use olny "dist" or "feature" prefix
+ */
+
+configurations {
+	distBase {
+		transitive = false
+		visible = false
+	}
+}
+
+dependencies {
+	//distBase project(':modules:portal-hooks:portal-pdf-hook')
+}
