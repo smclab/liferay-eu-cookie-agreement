@@ -47,55 +47,61 @@
 		</aui:button-row>
 	</div>
 
-	<aui:script use="aui-base,cookie,liferay-util-window">
-		var okButton = A.one('#<portlet:namespace />okButton');
-		var readMore = A.one('#<portlet:namespace />readMore');
+	<aui:script>
+		jQuery(document).ready(function() {
 
-		okButton.on('click', function (event) {
-			hidePrivacyMessage();
+			var okButton = jQuery('#<portlet:namespace />okButton');
+			var readMore = jQuery('#<portlet:namespace />readMore');
 
-			event.halt();
-		});
 
-		readMore.on('click', function (event) {
-			if (!event.metaKey && !event.ctrlKey) {
-				Liferay.Util.openInDialog(event);
+			okButton.on('click', function (event) {
+				hidePrivacyMessage();
+
+				event.preventDefault();
+				event.stopPropagation();
+			});
+
+			readMore.on('click', function (event) {
+				if (!event.metaKey && !event.ctrlKey) {
+					Liferay.Util.openInDialog(event);
+				}
+			});
+
+			var wrapper = jQuery('#wrapper');
+			var privacyInfoMessage = jQuery('#<portlet:namespace />privacy-info-message');
+
+			if (wrapper) {
+				wrapper.addClass('wrapper-for-privacy-portlet');
+			}
+
+			if (privacyInfoMessage) {
+				var hideStripPrivacyInfoMessage =
+					privacyInfoMessage.children('.hide-strip-privacy-info-message')[0];
+
+				if (hideStripPrivacyInfoMessage) {
+					hideStripPrivacyInfoMessage.on('click', hidePrivacyMessage);
+				}
+			}
+
+			function hidePrivacyMessage() {
+				privacyInfoMessage.parent('.smc-privacy-portlet').hide();
+
+				var today = new Date();
+				var expire = new Date();
+				var nDays = <%= cookieExpiration %>;
+
+				expire.setTime(today.getTime() + 3600000 * 24 * nDays);
+
+				var expString = "expires=" + expire.toGMTString();
+
+				cookieName = "<%= PrivacyUtil.PRIVACY_READ %><%= nameExtend %>";
+				cookieValue = today.getTime();
+
+				document.cookie = cookieName+"="+escape(cookieValue)+ ";expires="+expire.toGMTString();
+
+				wrapper.removeClass('wrapper-for-privacy-portlet');
 			}
 		});
-
-		var wrapper = A.one('#wrapper');
-		var privacyInfoMessage = A.one('#<portlet:namespace />privacy-info-message');
-
-		if (wrapper) {
-			wrapper.addClass('wrapper-for-privacy-portlet');
-		}
-
-		if (privacyInfoMessage) {
-			var hideStripPrivacyInfoMessage = privacyInfoMessage.one('.hide-strip-privacy-info-message');
-
-			if (hideStripPrivacyInfoMessage) {
-				hideStripPrivacyInfoMessage.on('click', hidePrivacyMessage);
-			}
-		}
-
-		function hidePrivacyMessage() {
-			privacyInfoMessage.ancestor('.smc-privacy-portlet').hide();
-
-			var today = new Date();
-			var expire = new Date();
-			var nDays = <%= cookieExpiration %>;
-
-			expire.setTime(today.getTime() + 3600000 * 24 * nDays);
-
-			var expString = "expires=" + expire.toGMTString();
-
-			cookieName = "<%= PrivacyUtil.PRIVACY_READ %><%= nameExtend %>";
-			cookieValue = today.getTime();
-
-			document.cookie = cookieName+"="+escape(cookieValue)+ ";expires="+expire.toGMTString();
-
-			wrapper.removeClass('wrapper-for-privacy-portlet');
-		}
 	</aui:script>
 
 </c:if>
