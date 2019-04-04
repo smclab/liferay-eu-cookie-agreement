@@ -53,7 +53,6 @@
 			var okButton = jQuery('#<portlet:namespace />okButton');
 			var readMore = jQuery('#<portlet:namespace />readMore');
 
-
 			okButton.on('click', function (event) {
 				hidePrivacyMessage();
 
