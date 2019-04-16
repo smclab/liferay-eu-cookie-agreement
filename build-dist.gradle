@@ -1,7 +1,7 @@
 /*
  * Distribution Profiles
  *
- * Please use olny "dist" or "feature" prefix
+ * Please use only "dist" or "feature" prefix
  */
 
 configurations {
@@ -12,5 +12,5 @@ configurations {
 }
 
 dependencies {
-	//distBase project(':modules:portal-hooks:portal-pdf-hook')
+	distBase project(':modules:privacy-web')
 }
