@@ -8,7 +8,7 @@
 #liferay.workspace.wars.dir=wars
 
 # Full path of Liferay Bundle in you local environment
-# 
+#
 liferay.workspace.home.dir=/w3/java/liferay/clienti/smcecm704/apps/liferay-ce-portal-7.0-ga5
 
 # SMC Nexus registry. Please add your credential to be able to download artifacts
