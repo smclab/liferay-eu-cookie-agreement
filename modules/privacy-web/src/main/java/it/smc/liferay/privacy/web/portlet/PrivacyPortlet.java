@@ -14,11 +14,21 @@
 
 package it.smc.liferay.privacy.web.portlet;
 
+import java.util.Map;
+
 import javax.portlet.Portlet;
 
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Modified;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.util.PropsUtil;
+import com.liferay.portal.util.PropsValues;
 
 import it.smc.liferay.privacy.web.util.PrivacyPortletKeys;
 
@@ -48,5 +58,55 @@ import it.smc.liferay.privacy.web.util.PrivacyPortletKeys;
 	service = Portlet.class
 )
 public class PrivacyPortlet extends MVCPortlet {
+
+	@Activate
+	@Modified
+	protected void activate(Map<String, Object> properties) {
+		if (!hasPortletId()) {
+			addPortletIdLayoutStaticPortletsAll();
+		}
+	}
+
+	protected void addPortletIdLayoutStaticPortletsAll() {
+		String[] layoutStaticPortletsAll =
+			PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
+
+		layoutStaticPortletsAll = ArrayUtil.append(
+			layoutStaticPortletsAll, PrivacyPortletKeys.PRIVACY);
+
+		PropsUtil.set(
+			PropsKeys.LAYOUT_STATIC_PORTLETS_ALL,
+			StringUtil.merge(layoutStaticPortletsAll));
+
+		PropsValues.LAYOUT_STATIC_PORTLETS_ALL = layoutStaticPortletsAll;
+	}
+
+	@Deactivate
+	@Modified
+	protected void deactivate(Map<String, Object> properties) {
+		if (hasPortletId()) {
+			removePortletIdLayoutStaticPortletsAll();
+		}
+	}
+
+	protected boolean hasPortletId() {
+		return ArrayUtil.contains(
+			PropsValues.LAYOUT_STATIC_PORTLETS_ALL, PrivacyPortletKeys.PRIVACY,
+			false);
+	}
+
+	protected void removePortletIdLayoutStaticPortletsAll() {
+		String[] layoutStaticPortletsAll =
+			PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
+
+		layoutStaticPortletsAll = ArrayUtil.remove(
+			layoutStaticPortletsAll, PrivacyPortletKeys.PRIVACY);
+
+		PropsUtil.set(
+			PropsKeys.LAYOUT_STATIC_PORTLETS_ALL,
+			StringUtil.merge(layoutStaticPortletsAll));
+
+		PropsValues.LAYOUT_STATIC_PORTLETS_ALL = layoutStaticPortletsAll;
+	}
 
 }
