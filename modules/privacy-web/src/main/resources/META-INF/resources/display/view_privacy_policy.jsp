@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2013 SMC Treviso Srl. All rights reserved.
+ * Copyright (c) 2013-present SMC Treviso Srl. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -11,7 +11,7 @@
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
- */
+ */ */
 --%>
 <%@ include file="/display/init.jsp" %>
 
