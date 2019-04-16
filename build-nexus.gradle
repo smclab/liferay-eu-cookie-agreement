@@ -87,8 +87,9 @@ if (grgit != null) {
 		}
 		else if ("HEAD".equals(gitBranchName)) {
 			def lastTag = grgit.describe()
+			println "Git lastTag ${lastTag}"
 
-			if (lastTag.startsWith("rel_")) {
+			if (lastTag.startsWith("rel_") || lastTag.startsWith("MP_v")) {
 				ext.gitSnapshotsBranch = false
 				ext.registrySuffix = ""
 			}
@@ -105,7 +106,7 @@ if (grgit != null) {
 	logger.debug("${gitSnapshotsBranch} ${registrySuffix}")
 }
 else {
-	logger.debug("No Git")
+	println "No Git"
 
 	ext.gitClone = false
 }

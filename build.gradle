@@ -9,15 +9,19 @@ buildscript {
 	}
 
 	repositories {
+		mavenLocal()
 		mavenCentral()
-		jcenter()
+
+		maven {
+			url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+		}
 	}
 }
 
 apply from: "build-nexus.gradle"
 
 allprojects {
-	group = "collaborative-document-editing.marketplace.ce"
+	group = "it.smc.marketplace.eu-cookie"
 }
 
 gradle.beforeProject {
@@ -313,7 +317,7 @@ configurations.each { config ->
 
 task tarDistAll() {
 	dependsOn tarProfiles
-} 
+}
 
 task zipDistAll() {
 	dependsOn zipProfiles
