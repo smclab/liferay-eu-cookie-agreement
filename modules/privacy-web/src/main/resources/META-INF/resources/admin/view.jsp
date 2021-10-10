@@ -41,7 +41,7 @@ String[] staticPortlets = PropsUtil.getArray(PropsKeys.LAYOUT_STATIC_PORTLETS_AL
 					onchange='<%= renderResponse.getNamespace() + "checkStatus()" %>'
 				/>
 
-				<c:if test="<%= !ArrayUtil.contains(staticPortlets, PrivacyPortletKeys.PRIVACY) %>">
+				<c:if test="<%= !ArrayUtil.contains(staticPortlets, PrivacyAdminPortletKeys.PRIVACY) %>">
 					<div class="alert alert-warning">
 						<p>
 							<strong><liferay-ui:message key="warning" />!</strong>
@@ -50,13 +50,13 @@ String[] staticPortlets = PropsUtil.getArray(PropsKeys.LAYOUT_STATIC_PORTLETS_AL
 						<p>
 							<liferay-ui:message key="make-sure-your-portal-properties-have-something-similar-to-this" />
 						</p>
-						<pre style="margin: 5px 0px 0px"><code><%= PropsKeys.LAYOUT_STATIC_PORTLETS_ALL %>=<%= PrivacyPortletKeys.PRIVACY %></code></pre>
+						<pre style="margin: 5px 0px 0px"><code><%= PropsKeys.LAYOUT_STATIC_PORTLETS_ALL %>=<%= PrivacyAdminPortletKeys.PRIVACY %></code></pre>
 					</div>
 				</c:if>
 
 			</aui:fieldset>
 
-			<div id="<portlet:namespace />settingsPanel" class="<%= privacyEnabled ? StringPool.BLANK : "hide" %>">
+			<div id="<portlet:namespace />settingsPanel" class="<%= privacyEnabled ? "" : "hide" %>">
 				<aui:fieldset collapsible="<%= true %>" label="disclaimer-configuration">
 
 					<aui:input name="privacyPolicyArticleId" label="privacy-policy-web-content-id" value="<%= privacyPolicyArticleId %>" />
