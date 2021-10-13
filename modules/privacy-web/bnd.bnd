@@ -1,3 +1,4 @@
+Bundle-Name: privacy-web
 Bundle-SymbolicName: it.smc.liferay.privacy.web
-Bundle-Version: 2.1.0
-Bundle-Name: EU Privacy
+Bundle-Version: 1.0.0
+Export-Package: it.smc.liferay.privacy.web.constants

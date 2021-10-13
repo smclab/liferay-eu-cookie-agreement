@@ -24,7 +24,7 @@
 	<div class="alert alert-info text-center privacy-info-message" id="<portlet:namespace />privacy-info-message">
 
 		<c:if test="<%= privacyInfo != null %>">
-			<liferay-ui:asset-display
+			<liferay-asset:asset-display
 				className="<%= JournalArticle.class.getName() %>"
 				classPK="<%= privacyInfo.getResourcePrimKey() %>"
 				showHeader="<%= false %>"
@@ -57,11 +57,10 @@
 		</aui:button-row>
 	</div>
 
-	<aui:script>
-		jQuery(document).ready(function() {
-
-			var okButton = jQuery('#<portlet:namespace />okButton');
-			var readMore = jQuery('#<portlet:namespace />readMore');
+	<aui:script use="node">
+			var A = AUI();
+			var okButton = A.one('#<portlet:namespace />okButton');
+			var readMore = A.one('#<portlet:namespace />readMore');
 
 			okButton.on('click', function (event) {
 				hidePrivacyMessage();
@@ -76,8 +75,8 @@
 				}
 			});
 
-			var wrapper = jQuery('#wrapper');
-			var privacyInfoMessage = jQuery('#<portlet:namespace />privacy-info-message');
+			var wrapper =  A.one('#wrapper');
+			var privacyInfoMessage =  A.one('#<portlet:namespace />privacy-info-message');
 
 			if (wrapper) {
 				wrapper.addClass('wrapper-for-privacy-portlet');
@@ -85,7 +84,7 @@
 
 			if (privacyInfoMessage) {
 				var hideStripPrivacyInfoMessage =
-					privacyInfoMessage.children('.hide-strip-privacy-info-message')[0];
+					privacyInfoMessage.one('.hide-strip-privacy-info-message');
 
 				if (hideStripPrivacyInfoMessage) {
 					hideStripPrivacyInfoMessage.on('click', hidePrivacyMessage);
@@ -93,7 +92,7 @@
 			}
 
 			function hidePrivacyMessage() {
-				privacyInfoMessage.parent('.smc-privacy-portlet').hide();
+				privacyInfoMessage.ancestor('.smc-privacy-portlet').hide();
 
 				var today = new Date();
 				var expire = new Date();
@@ -110,7 +109,6 @@
 
 				wrapper.removeClass('wrapper-for-privacy-portlet');
 			}
-		});
 	</aui:script>
 
 </c:if>

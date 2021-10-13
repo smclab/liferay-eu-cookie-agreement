@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import it.smc.liferay.privacy.web.util.PrivacyPortletKeys;
+import it.smc.liferay.privacy.web.constants.PrivacyAdminPortletKeys;
 import it.smc.liferay.privacy.web.util.PrivacyUtil;
 
 /**
@@ -52,7 +52,7 @@ import it.smc.liferay.privacy.web.util.PrivacyUtil;
 		"javax.portlet.display-name=EU Privacy Disclaimer Configuration",
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/admin/view.jsp",
-		"javax.portlet.name=" + PrivacyPortletKeys.PRIVACY_ADMIN,
+		"javax.portlet.name=" + PrivacyAdminPortletKeys.PRIVACY_ADMIN,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"
 	},

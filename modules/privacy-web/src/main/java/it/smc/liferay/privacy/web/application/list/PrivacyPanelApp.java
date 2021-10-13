@@ -22,7 +22,7 @@ import com.liferay.application.list.PanelApp;
 import com.liferay.application.list.constants.PanelCategoryKeys;
 import com.liferay.portal.kernel.model.Portlet;
 
-import it.smc.liferay.privacy.web.util.PrivacyPortletKeys;
+import it.smc.liferay.privacy.web.constants.PrivacyAdminPortletKeys;
 
 /**
  * @author SMC Treviso
@@ -39,12 +39,12 @@ public class PrivacyPanelApp extends BasePanelApp {
 
 	@Override
 	public String getPortletId() {
-		return PrivacyPortletKeys.PRIVACY_ADMIN;
+		return PrivacyAdminPortletKeys.PRIVACY_ADMIN;
 	}
 
 	@Override
 	@Reference(
-		target = "(javax.portlet.name=" + PrivacyPortletKeys.PRIVACY_ADMIN + ")",
+		target = "(javax.portlet.name=" + PrivacyAdminPortletKeys.PRIVACY_ADMIN + ")",
 		unbind = "-"
 	)
 	public void setPortlet(Portlet portlet) {

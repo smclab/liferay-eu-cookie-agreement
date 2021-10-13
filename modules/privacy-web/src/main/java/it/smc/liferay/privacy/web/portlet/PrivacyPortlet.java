@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PropsUtil;
 import com.liferay.portal.util.PropsValues;
 
-import it.smc.liferay.privacy.web.util.PrivacyPortletKeys;
+import it.smc.liferay.privacy.web.constants.PrivacyAdminPortletKeys;
 
 /**
  * @author SMC Treviso
@@ -51,7 +51,7 @@ import it.smc.liferay.privacy.web.util.PrivacyPortletKeys;
 		"javax.portlet.display-name=EU Privacy Disclaimer",
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/display/view.jsp",
-		"javax.portlet.name=" + PrivacyPortletKeys.PRIVACY,
+		"javax.portlet.name=" + PrivacyAdminPortletKeys.PRIVACY,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"
 	},
@@ -72,7 +72,7 @@ public class PrivacyPortlet extends MVCPortlet {
 			PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
 
 		layoutStaticPortletsAll = ArrayUtil.append(
-			layoutStaticPortletsAll, PrivacyPortletKeys.PRIVACY);
+			layoutStaticPortletsAll, PrivacyAdminPortletKeys.PRIVACY);
 
 		PropsUtil.set(
 			PropsKeys.LAYOUT_STATIC_PORTLETS_ALL,
@@ -91,7 +91,7 @@ public class PrivacyPortlet extends MVCPortlet {
 
 	protected boolean hasPortletId() {
 		return ArrayUtil.contains(
-			PropsValues.LAYOUT_STATIC_PORTLETS_ALL, PrivacyPortletKeys.PRIVACY,
+			PropsValues.LAYOUT_STATIC_PORTLETS_ALL, PrivacyAdminPortletKeys.PRIVACY,
 			false);
 	}
 
@@ -100,7 +100,7 @@ public class PrivacyPortlet extends MVCPortlet {
 			PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
 
 		layoutStaticPortletsAll = ArrayUtil.remove(
-			layoutStaticPortletsAll, PrivacyPortletKeys.PRIVACY);
+			layoutStaticPortletsAll, PrivacyAdminPortletKeys.PRIVACY);
 
 		PropsUtil.set(
 			PropsKeys.LAYOUT_STATIC_PORTLETS_ALL,

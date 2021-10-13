@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.Validator;
 
+import it.smc.liferay.privacy.web.constants.PrivacyAdminPortletKeys;
+
 /**
  * @author SMC Treviso
  */
@@ -39,7 +41,7 @@ public class PrivacyUtil {
 
 		return PortletPreferencesLocalServiceUtil.getPreferences(
 			companyId, groupId, PortletKeys.PREFS_OWNER_TYPE_GROUP, 0,
-			PrivacyPortletKeys.PRIVACY_ADMIN);
+			PrivacyAdminPortletKeys.PRIVACY_ADMIN);
 	}
 
 	public static JournalArticle getPrivacyJournalArticle(
